@@ -1,6 +1,6 @@
 {
 	"name": "wawReact",
-	"description": "Sample project from waw framework.",
+	"description": "Sample of the waw project with react client.",
 	"icon": "/client/img/favicon.png",
 	"prefix": "initialize",
 	"license": "MIT",
