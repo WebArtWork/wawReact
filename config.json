@@ -10,12 +10,21 @@
 	"mongo": {
 		"host": "localhost",
 		"port": 27017,
-		"db": "newdb"
+		"db": "waw"
 	},
-	"passport": {
-		"local": {
-			"successRedirect": "/",
-			"failureRedirect": "/"
-		}
+	"parts": {
+		"core": "waw",
+		"sem": "waw",
+		"unique": "waw"
+	},
+	"dependencies": {
+		"mongoose": "*"
+	},
+	"user": {
+		"pages": "login sign reset save",
+		"is": {
+			"admin": "ceo@webart.work"
+		},
+		"urls": ["webart.work", "localhost:8080"]
 	}
 }
