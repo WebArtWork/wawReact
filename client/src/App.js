@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import TodoList from "./components/todolist";
+import TodoList from "./pages/todolist/todolist";
 
 class App extends Component {
   state = {
