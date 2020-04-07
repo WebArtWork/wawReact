@@ -1,0 +1,1 @@
+Folder with components which represents pages or inner folders with same components
