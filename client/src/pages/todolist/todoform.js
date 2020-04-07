@@ -1,6 +1,8 @@
 import React from "react";
 import shortid from "shortid";
 
+import { useAuth } from '../../services/user.service'
+
 export default class TodoForm extends React.Component {
   state = {
     text: ""
@@ -14,6 +16,7 @@ export default class TodoForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    useAuth();
     this.props.onSubmit({
       id: shortid.generate(),
       text: this.state.text,
