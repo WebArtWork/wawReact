@@ -1,0 +1,19 @@
+{
+	"priority": 901,
+	"name": "User",
+	"router": "router.js auth.js",
+	"crud": {
+		"update": [{
+			"keys": ["name", "data", "is", "avatarUrl"]
+		}, {
+			"keys": ["data", "is"],
+			"name": "admin"
+		}]
+	},
+	"dependencies": {
+		"express-recaptcha": "*",
+		"passport-local": "*",
+		"bcrypt-nodejs": "*",
+		"passport": "*"
+	}
+}
