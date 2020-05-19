@@ -44,7 +44,7 @@ export default class UsersList extends React.Component {
             />
             <button>add user</button>
           </form>
-          {this.state.users.length?(this.state.users.map(user => (<div key={user.id.toString()}>{user.name}<button onClick={() => {this.deleteUser(user.id)}}>x</button></div>))):(<div className="no_todos">No users</div>)}
+          {this.state.users.length?(this.state.users.map(user => (<div key={user.id.toString()}>{user.name}<button onClick={() => {this.deleteUser(user.id)}}>x</button></div>))):(<div className="no_todos"><img alt="" src="/api/user/default.png"></img></div>)}
       </div>
     );
   }
