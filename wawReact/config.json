@@ -1,0 +1,31 @@
+{
+	"name": "wawReact",
+	"description": "Default waw project with React client",
+	"license": "MIT",
+	"production": false,
+	"icon": "/client/src/favicon.ico",
+	"prefix": "wawReact",
+	"port": 8080,
+	"session": true,
+	"mongo": {
+		"host": "localhost",
+		"port": 27017,
+		"db": "waw"
+	},
+	"parts": {
+		"core": "waw",
+		"angular": "waw",
+		"sem": "waw",
+		"unique": "waw"
+	},
+	"dependencies": {
+		"mongoose": "*"
+	},
+	"user": {
+		"pages": "login sign reset save",
+		"is": {
+			"admin": "ceo@webart.work"
+		},
+		"urls": ["webart.work", "localhost:8080"]
+	}
+}
