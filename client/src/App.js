@@ -1,10 +1,14 @@
+import React, {Component} from 'react';
+import PostRequest from './PostRequest'
 
-function App() {
-  return (
-    <div>
-    
-    </div>
-  );
-}
 
-export default App;
+
+export default class App extends Component {
+
+	render() {
+	return(<div>
+		<PostRequest />
+	</div>)
+	}
+ }
+

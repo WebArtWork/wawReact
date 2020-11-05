@@ -1,1 +1,0 @@
-Components which initialized once and used in many different other components
