@@ -6,6 +6,8 @@ import http from './services/http.service';
 import Login from './pages/login';
 import SingUp from './pages/singup';
 import Profile from './pages/profile';
+ import Users from './pages/users';
+import ForgotPass from './pages/forgotpass';
 
 
 export default class App extends Component {
@@ -18,18 +20,13 @@ export default class App extends Component {
 		return(
 			<div>
 			<Router>
-				
 				<Switch>
 					<Route exact path="/" component ={Login}/>
 					<Route path="/singup" component ={SingUp}/>
-					{/*<Route path="/admin/users" component ={Users}/>*/}
+					<Route path="/users" component ={Users}/>
 					<Route path="/profile" component ={Profile}/>
-				
+					<Route path="/forgotpass" component ={ForgotPass}/>
 				</Switch>
-				{/*	<nav>
-						<button><Link to='/singup'>SingUp</Link></button>
-						<button><Link to='/profile'>Profile</Link></button>
-					</nav>*/}
 		</Router>
 		</div>)}
  }

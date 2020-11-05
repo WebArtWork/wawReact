@@ -1,3 +1,5 @@
+
+
 export default function http(){
 	window.http = {
 		post: (url, doc, callback=(resp:any) => {}, opts:any={})=>{
@@ -11,9 +13,15 @@ export default function http(){
 				return resp.json();
 			}).then(callback);
 		},
-		get: (url, callback=(resp:any) => {}, opts:any={})=>{}
-	};
+		get: (url, callback=(resp:any) => {}, opts:any={})=>{
+			fetch(url, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			}).then((resp)=>{
+				return resp.json();
+			}).then(callback);
+		}
+	}
 }
-
-
-
