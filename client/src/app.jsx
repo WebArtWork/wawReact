@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import http from './services/http.service';
 
 
@@ -22,9 +22,9 @@ export default class App extends Component {
 			<Router>
 				<Switch>
 					<Route exact path="/" component ={Login}/>
-					<Route path="/singup" component ={SingUp}/>
-					<Route path="/users" component ={Users}/>
-					<Route path="/profile" component ={Profile}/>
+					<Route exact path="/singup" component ={SingUp}/>
+					<Route path="/admin/users" component ={Users}/>
+					<Route exact path="/profile" component ={Profile}/>
 					<Route path="/forgotpass" component ={ForgotPass}/>
 				</Switch>
 		</Router>

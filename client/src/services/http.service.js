@@ -1,6 +1,7 @@
 
 
 export default function http(){
+
 	window.http = {
 		post: (url, doc, callback=(resp:any) => {}, opts:any={})=>{
 			fetch(url, {
@@ -22,6 +23,6 @@ export default function http(){
 			}).then((resp)=>{
 				return resp.json();
 			}).then(callback);
-		}
+		},
 	}
 }
