@@ -44,7 +44,7 @@ class SingUp extends React.Component{
 					<input type="password" name="password" placeholder="password" value={password} onChange={this.changeHandler}/>
 					</div>
 					<div>
-						 <button type="submit">Log Out</button>
+						 <button type="submit">SIGN</button>
 					</div>
 			</form>
 			<div> Already has an account? <Link to='/'>Sign In</Link></div>

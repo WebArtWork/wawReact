@@ -9,15 +9,18 @@ class Login extends React.Component{
 		redirect: false,
 		redirectsingup: false
 	}
+
+
 	changeHandler =(event)=>{
 		this.setState({[event.target.name]: event.target.value})
 	}
 	submitHandle = (event)=>{
 		event.preventDefault();
 		window.http.post('/api/user/status', this.state, (resp)=>{
-			console.log(resp);
 			if(resp.email && resp.pass){
 				window.http.post('/api/user/login', this.state, (resp)=>{
+					if(!resp.data) resp.data={};	
+					window.localStorage.setItem("waw_user", JSON.stringify(resp));
 					 this.setState({ redirect: true });
 				});
 			}else if(!resp.email){
@@ -55,7 +58,7 @@ class Login extends React.Component{
 					</div>
 						<button type="submit">Profile</button> 
 				</form>
-					 {console.log(redirect)}
+				 {/*console.log(redirect)*/}
 				<div>
 					<Link to='forgotpass'>Forgot password?</Link>
 					<Link to='singup'>Don't have an account?</Link>
