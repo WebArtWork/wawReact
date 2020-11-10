@@ -15,10 +15,7 @@ export default function http(){
 		},
 		get: (url, callback=(resp:any) => {}, opts:any={})=>{
 			fetch(url, {
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json'
-				}
+				method: 'GET'
 			}).then((resp)=>{
 				return resp.json();
 			}).then(callback);

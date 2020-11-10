@@ -15,12 +15,14 @@ export default class ForgotPass extends  Component{
 	submitHandle = (event)=>{
 		event.preventDefault();
 		window.http.post('/api/user/status', this.state, (resp)=>{
-			console.log(resp)
 			if(resp.email){
-				window.http.post('/api/user/request', this.state, (resp)=>{
-					 this.setState({confirmpass: true });
-				});
-			}
+				this.setState({confirmpass: true })
+			//	window.http.post('/api/user/request'  );
+			// 		this.state, (resp)=>{
+			// 		console.log('work')
+			// 		 this.setState({confirmpass: true });
+			// 	});
+			 }
 			else {
 				alert("Your email is wrong")				
 			}
@@ -33,7 +35,7 @@ export default class ForgotPass extends  Component{
 
 		console.log(confirmpass)
 		if(confirmpass){
-			return <Redirect to='profile'/>
+			return <Redirect to='/forgotpass/recovery_pass'/>
 		}
 		return(
 			<div>

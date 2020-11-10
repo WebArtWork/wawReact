@@ -1,12 +1,13 @@
 import React from 'react';
 import {Link, Redirect} from "react-router-dom";
-import HeaderUser from '../common/header.user'
+import HeaderUser from '../common/header.user';
 
 
 class Profile extends React.Component{
 	state={
 		 user: localStorage.getItem("waw_user") && JSON.parse(localStorage.getItem("waw_user")) || {data:{}},
-		redirect_to_out: false	
+		redirect_to_out: false,
+		reload: false
 	}
 
 	submitHandle =(event)=>{
@@ -21,25 +22,27 @@ class Profile extends React.Component{
 			 this.setState({redirect_to_out: true })
 		})
 	}
-	todataUrl =(fl, cb)=> {
-				var a = new FileReader();
-				a.onload = (e)=>{
-					var target: any = e.target;
-					cb(target.result);
-				}
-				a.readAsDataURL(fl);
-			}
-	changeAvatar =(e)=>{
-				this.todataUrl(e.target.files[0], (dataUrl)=>{
-					this.state.user.avatarUrl = dataUrl;
-					//render();
-					window.http.post('/api/user/avatar', {
-						dataUrl: dataUrl})
-					console.log('success')
-				});
-			}
 
+	 todataUrl =(fl, cb)=> {
+			var a = new FileReader();
+			a.onload = (e)=>{
+				var target: any = e.target;
+				cb(target.result);
+			}
+			a.readAsDataURL(fl);
+		}
+	changeAvatar =(e)=> {
+			this.todataUrl(e.target.files[0], (dataUrl)=>{
+					this.state.user.avatarUrl = dataUrl;
+				window.http.post('/api/user/avatar', {
+				dataUrl: dataUrl})
+				this.setState({reload: true})
+			});
+	}
+
+	
 	render(){
+
 		const { user, redirect_to_out } = this.state;	
 		if(redirect_to_out){
 			return <Redirect to='/'/>
@@ -50,7 +53,7 @@ class Profile extends React.Component{
 				<hr/>
 				<label>
 					<input type="file" name="file" onChange={this.changeAvatar} accept="image/*" style={{display: 'none'}}/>
-					<img src={user.avatarUrl}  alt="User Avatar"/>
+					<img src={user.avatarUrl}  width='55px' height='55px' alt="User Avatar"/>
 				</label>
 
 			<button type='submit' onClick={this.LogOut}>LOGOUT</button>

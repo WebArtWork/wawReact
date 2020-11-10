@@ -1,10 +1,13 @@
 import {Link} from "react-router-dom";
-
-export default function HeaderUser(admin, avatar){
+import Company from "../assets/logo.png"
+export default function HeaderUser(props){
 		return ( <div>
-				{admin.admin ?  <Link to='/admin/users'>Users</Link> : ''}
-  				<div><img src='' alt="Company"/></div>
-  				<div><img src={admin.avatar} alt="User Avatar"/></div>
+				{props.admin ?  <Link to='/admin/users'>Users</Link> : ''}
+  				<div><img src={Company} width='55px' height="55px" alt="Company"/></div>
+  				<label>
+  				<Link to="/profile"><div><img src={props.avatar} width='55px' height='55px' alt="User Avatar"/></div></Link>
+  				
+  				</label>
 			</div>
 		)
 }
