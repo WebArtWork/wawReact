@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link, Redirect } from "react-router-dom";
-
+import '../style/pages/login.css';
+import '../style/waw/_waw-btn.css'
 
 class Login extends React.Component{
 	state={
@@ -45,23 +46,26 @@ class Login extends React.Component{
 			return <Redirect to='singup'/>
 		}
 		return(
-			<div>
-					<div>Log In</div>
-					<form onSubmit = {this.submitHandle} >
-					<div>
+			<div className="auth-wrapper">
+				<div className="auth">
+					<div className="auth-title">Log In</div>
+					<form className="auth-form"  onSubmit = {this.submitHandle} >
+					<div className="waw-input mb15">
 						<span>EMAIL:</span>
 					<input type="text" name="email" placeholder="email" value={email} onChange={this.changeHandler} />
 					</div>
-					<div>
+					<div className="waw-input mb15">
 					<span>PASSWORD:</span>	
 					<input type="password" name="password" placeholder="password" value={password} onChange={this.changeHandler}/>
 					</div>
-						<button type="submit">Profile</button> 
+					<div className="auth-form__btn">
+						<button className="login-btn" type="submit">Login</button> 
+					</div>
 				</form>
-				 {/*console.log(redirect)*/}
-				<div>
+				<div className="auth-link">
 					<Link to='forgotpass'>Forgot password?</Link>
 					<Link to='singup'>Don't have an account?</Link>
+				</div>
 				</div>
 		</div>)
 	}

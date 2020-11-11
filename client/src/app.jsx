@@ -8,7 +8,9 @@ import SingUp from './pages/singup';
 import Profile from './pages/profile';
  import Users from './pages/users';
 import ForgotPass from './pages/forgotpass';
-import RecoveryPass from './pages/pass_recover/password_recovery';
+import RecoveryPass from './pages/components/password_recovery';
+
+
 
 
 export default class App extends Component {

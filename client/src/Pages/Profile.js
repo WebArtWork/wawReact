@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, Redirect} from "react-router-dom";
-import HeaderUser from '../common/header.user';
+import HeaderUser from "./components/header.users";
 
 
 class Profile extends React.Component{
