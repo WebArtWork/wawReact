@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link, Redirect} from "react-router-dom";
 import HeaderUser from "./components/header.users";
+import './style_pages/profile.scss'
 
 
 class Profile extends React.Component{
@@ -48,36 +49,50 @@ class Profile extends React.Component{
 			return <Redirect to='/'/>
 		}
 		return (<div>
-					<HeaderUser admin={user.is.admin} avatar={user.avatarUrl}/>
-					<div>Profile Setting</div>
-				<hr/>
-				<label>
-					<input type="file" name="file" onChange={this.changeAvatar} accept="image/*" style={{display: 'none'}}/>
-					<img src={user.avatarUrl}  width='55px' height='55px' alt="User Avatar"/>
-				</label>
-
-			<button type='submit' onClick={this.LogOut}>LOGOUT</button>
-			<form>
-				<div>
-					<span>Name</span>
-					<input type='text' defaultValue={user.name} placeholder="Your name"  onChange={(event)=>{user.name=event.target.value}} onBlur={this.submitHandle}/>
+					<div >
+						<HeaderUser admin={user.is.admin} avatar={user.avatarUrl}/>
+					</div>
+					<div className="profile-wrapper">
+						<div className="profile">
+						<div className="profile-header">Profile Settings</div>
+						<div className="profile-body">
+							<div className="profile-left">
+								<div className="waw-input mb15">
+									<span>Name</span>
+									<input type="text" name="name" placeholder="Your name"  defaultValue={user.name}  onChange={(event)=>{user.name=event.target.value}} onBlur={this.submitHandle}/>
+								</div>
+								<div className="waw-input mb15">
+									<span>Phone number</span>
+									<input type="tel" name="number" placeholder="Phone number" defaultValue={user.data.phone} onChange={(event)=>{user.data.phone=event.target.value;}} onBlur={this.submitHandle}/>
+								</div>
+								<div className="waw-input mb15">
+									<span>Location</span>
+									<input type="text" name="location" placeholder="Your location"  defaultValue={user.data.location} onChange={ (event)=>{user.data.location=event.target.value}} onBlur={this.submitHandle}/>
+								</div>
+								<div className="waw-textarea">
+									<span className="waw__label">Bio</span>
+									<textarea className="_mh150" placeholder="Bio" defaultValue={user.data.bio} onChange={(event)=>{user.data.bio=event.target.value}} onBlur={this.submitHandle}></textarea>
+								</div>
+							</div>
+							<div className="profile-right">
+								<div className="profile-right__img">
+									<img width="50" height="50" src={user.avatarUrl} alt="User Avatar"/>
+									<label className="profile-right__img__upload">
+										<div><i class="material-icons"></i></div>
+										<input type="file" name="file" onChange={this.changeAvatar} accept="image/*" style={{display: 'none'}}/>
+									</label>
+								</div>
+								<div className="profile-logout">
+									<button className="waw-btn _danger"  onClick={this.LogOut}>Logout</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div>
-					<span>PHONE NUMBER</span>
-					<input type='text'  defaultValue={user.data.phone} placeholder="Phone number" onChange={(event)=>{user.data.phone=event.target.value;}} onBlur={this.submitHandle}/>
-				</div>
-				<div>
-					<span>LOCATION</span>
-					<input type='text' name='location' defaultValue={user.data.location} placeholder="Your location" onChange={ (event)=>{user.data.location=event.target.value}} onBlur={this.submitHandle}/>
-				</div>
-				<div>
-					<span>BIO</span>
-		 			<textarea name="bio" cols="50" rows="7" defaultValue={user.data.bio} placeholder="Bio" onChange={(event)=>{user.data.bio=event.target.value}} onBlur={this.submitHandle}></textarea>
-				</div>
-			</form>
 			</div>)
 	}
 }
 
 
 export default Profile 
+

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import http from './services/http.service';
-
+import './app.scss'
 
 import Login from './pages/login';
 import SingUp from './pages/singup';

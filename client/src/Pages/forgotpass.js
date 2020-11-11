@@ -16,12 +16,8 @@ export default class ForgotPass extends  Component{
 		event.preventDefault();
 		window.http.post('/api/user/status', this.state, (resp)=>{
 			if(resp.email){
+				console.log('true')
 				this.setState({confirmpass: true })
-			//	window.http.post('/api/user/request'  );
-			// 		this.state, (resp)=>{
-			// 		console.log('work')
-			// 		 this.setState({confirmpass: true });
-			// 	});
 			 }
 			else {
 				alert("Your email is wrong")				
@@ -38,19 +34,24 @@ export default class ForgotPass extends  Component{
 			return <Redirect to='/forgotpass/recovery_pass'/>
 		}
 		return(
-			<div>
-				<div>Reset Password</div>
-				<form onSubmit = {this.submitHandle} >
-					<div>
-						<span>EMAIL:</span>
-						<input type="text" name="email" placeholder="email" value={email} onChange={this.changeHandler} />
-					</div>
-					<div><button type="submit">Continue</button></div>
-				</form>
-				<div>
-					<Link to='/'>Login</Link>
-					<Link to='/singup'>Sing Up</Link>
+
+			<div className="auth-wrapper">
+		<div className="auth">
+			<div className="auth-title">Reset Password</div>
+			<form className="auth-form" onSubmit = {this.submitHandle}>
+				<div className="waw-input mb15">
+					<span>Email:</span>
+					<input  type="text" placeholder="Email" value={email} name="email" onChange={this.changeHandler} />
 				</div>
-			</div>)
+				<div className="auth-form__btn"><button className="waw-btn _primary" type="submit">Continue</button></div>
+			</form>
+			<div className="auth-link">
+				<Link to='/'>Login</Link>
+				<Link to='/singup'>Sign up</Link>
+			</div>
+			</div>
+	</div>)
 	}
 }
+
+

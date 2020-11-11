@@ -1,5 +1,6 @@
 // BUTTONS
 .waw-btn {
+    // buttons body settings
 	min-width: 150px;
     display: inline-block;
     font-weight: bold;
@@ -21,8 +22,9 @@
     border-radius: 15px;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
         box-shadow 0.15s ease-in-out;
-    }
-    ._primary {
+
+    // buttons color settings
+    &._primary {
         background-color: $sky;
         transition: 0.2s ease-in-out;
 
@@ -32,14 +34,14 @@
         }
     }
 
-      .waw-btn._second {
+    &._second {
         border: 1px solid $sky;
         background-color: $white;
         transition: 0.2s ease-in-out;
         color: $sky;
     }
 
-      .waw-btn._danger {
+    &._danger {
         background-color: $red;
         transition: 0.2s ease-in-out;
 		color: white;
@@ -51,18 +53,20 @@
     }
 
 
-    .waw-btn._disabled-1 {
+    &._disabled-1 {
         background-color: $grey;
         cursor: not-allowed;
     }
 
-      .waw-btn._disabled-2 {
+    &._disabled-2 {
         background-color: $white;
         border: 1px solid $grey;
         color: $grey;
         cursor: not-allowed;
     }
 
+
+}
 
 .waw-btn__icon {
     background: #3498DB;

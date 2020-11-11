@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link, Redirect} from 'react-router-dom';
+import './style_pages/singup.scss'
 
 class SingUp extends React.Component{
 	state ={
@@ -13,8 +14,6 @@ class SingUp extends React.Component{
 
 	submitHandle =(event)=>{
 		event.preventDefault();
-			// let testemail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i
-			// console.log(testemail.test(this.state.email))
 		window.http.post('/api/user/status',this.state, (resp)=>{
 				console.log(resp)
 			if(!resp.email){
@@ -33,24 +32,29 @@ class SingUp extends React.Component{
 		if(redirect){
 			return <Redirect to='profile'/>
 		}
-		return (<div>
-			<form onSubmit ={this.submitHandle}>
-				<div>
-						<span>EMAIL:</span>
-					<input type="text" name="email" placeholder="email" value={email} onChange={this.changeHandler} />
+		return <div className="auth-wrapper">
+					<div className="auth">
+						<div className="auth-title">Sign up</div>
+						<form className="auth-form" onSubmit ={this.submitHandle}>
+							<div className="waw-input mb15">
+								<span>Email:</span>
+								<input  name="email" placeholder="email" value={email} onChange={this.changeHandler}/>
+							</div>
+							<div className="waw-input mb15">
+								<span>Password:</span>
+								<input  type="password" placeholder="Password" name="password" value={password} onChange={this.changeHandler}/>
+							</div>
+							<div className="auth-form__btn"><button className="waw-btn _primary" type="submit">Sign</button></div>
+						</form>
+						<div className="auth-link">
+							<p>Already has an account?</p>
+							<Link to='/'>Sign in</Link>
+						</div>
 					</div>
-					<div>
-					<span>PASSWORD:</span>	
-					<input type="password" name="password" placeholder="password" value={password} onChange={this.changeHandler}/>
-					</div>
-					<div>
-						 <button type="submit">SIGN</button>
-					</div>
-			</form>
-			<div> Already has an account? <Link to='/'>Sign In</Link></div>
-			</div>)
+			</div>
 	}
 }
+
 
 
 export default SingUp 

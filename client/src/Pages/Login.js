@@ -1,12 +1,11 @@
 import React from 'react';
 import {Link, Redirect } from "react-router-dom";
-import '../style/pages/login.css';
-import '../style/waw/_waw-btn.css'
+import './style_pages/login.scss'
 
 class Login extends React.Component{
 	state={
-		email: 'ceo@webart.work',
-		password: 'asdasdasdasd',
+		email: '',  //'ceo@webart.work
+		password: '', //asdasdasdasd
 		redirect: false,
 		redirectsingup: false
 	}
@@ -34,7 +33,7 @@ class Login extends React.Component{
 					}
 					
 			}else {
-				alert("Our email or password is wrong")
+				alert("Your password is wrong")
 			}
 		});
 	}
@@ -59,7 +58,7 @@ class Login extends React.Component{
 					<input type="password" name="password" placeholder="password" value={password} onChange={this.changeHandler}/>
 					</div>
 					<div className="auth-form__btn">
-						<button className="login-btn" type="submit">Login</button> 
+						<button className="waw-btn _primary" type="submit">Login</button> 
 					</div>
 				</form>
 				<div className="auth-link">
