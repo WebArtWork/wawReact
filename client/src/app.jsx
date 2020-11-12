@@ -7,8 +7,8 @@ import Login from './pages/login';
 import SingUp from './pages/singup';
 import Profile from './pages/profile';
  import Users from './pages/users';
-import ForgotPass from './pages/forgotpass';
-import RecoveryPass from './pages/components/password_recovery';
+import ForgotPass from './pages/reset';
+
 
 
 
@@ -20,17 +20,13 @@ export default class App extends Component {
 	}
 	render() { 
 		
-		return(
-			<div>
-			<Router>
+		return(<Router>
 				<Switch>
 					<Route exact path="/" component ={Login}/>
 					<Route exact path="/singup" component ={SingUp}/>
 					<Route path="/admin/users" component ={Users}/>
 					<Route exact path="/profile" component ={Profile}/>
-					<Route exact path="/forgotpass" component ={ForgotPass}/>
-					<Route path="/forgotpass/recovery_pass" component ={RecoveryPass}/>
+					<Route exact path="/reset" component ={ForgotPass}/>
 				</Switch>
-		</Router>
-		</div>)}
+		</Router>)}
  }

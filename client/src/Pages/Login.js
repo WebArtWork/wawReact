@@ -62,11 +62,11 @@ class Login extends React.Component{
 					</div>
 				</form>
 				<div className="auth-link">
-					<Link to='forgotpass'>Forgot password?</Link>
+					<Link to='reset'>Forgot password?</Link>
 					<Link to='singup'>Don't have an account?</Link>
 				</div>
 				</div>
-		</div>)
+			</div>)
 	}
 }
 

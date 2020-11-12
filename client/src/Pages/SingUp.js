@@ -4,8 +4,8 @@ import './style_pages/singup.scss'
 
 class SingUp extends React.Component{
 	state ={
-		email: 'ceo@webart.work',
-		password: 'asdasdasdasd',
+		email: '',
+		password: '',
 		redirect: false
 	}
 	changeHandler =(event)=>{
@@ -15,10 +15,9 @@ class SingUp extends React.Component{
 	submitHandle =(event)=>{
 		event.preventDefault();
 		window.http.post('/api/user/status',this.state, (resp)=>{
-				console.log(resp)
 			if(!resp.email){
 				window.http.post('/api/user/signup',this.state,  (resp)=>{
-					 this.setState({redirect: true });
+					this.setState({redirect: true, email: this.state.email });
 				});
 			}
 			else {

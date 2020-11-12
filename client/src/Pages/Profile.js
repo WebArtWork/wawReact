@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import HeaderUser from "./components/header.users";
 import './style_pages/profile.scss'
 
@@ -34,11 +34,11 @@ class Profile extends React.Component{
 		}
 	changeAvatar =(e)=> {
 			this.todataUrl(e.target.files[0], (dataUrl)=>{
-					this.state.user.avatarUrl = dataUrl;
-				window.http.post('/api/user/avatar', {
+			this.state.user.avatarUrl = dataUrl;
+			window.http.post('/api/user/avatar', {
 				dataUrl: dataUrl})
-				this.setState({reload: true})
-			});
+			this.setState({reload: true})
+		});
 	}
 
 	

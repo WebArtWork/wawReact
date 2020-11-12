@@ -1,32 +1,29 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import HeaderUser from './components/header.users';
-import Delete from '../assets/deleteButton.png';
 import AddNewRole from './components/add_new_role';
+import UserList from './components/user_list';
+import GenerateUser from './components/generate_user';
 import './style_pages/users.scss'
 
 
 class Users extends React.Component{
-	constructor(){
-		super()
-	}
 	state ={
 		user: localStorage.getItem("waw_user") && JSON.parse(localStorage.getItem("waw_user")) || {data:{}},
-		users:[],
+		users: [],
 		emeil: '',
 		role: [],
 		new_role: ''
 	}
 	componentDidMount(){
-		window.http.get('/api/user/get', (resp) =>{
+			window.http.get('/api/user/get', (resp) =>{
 			this.setState({users: resp})
 		})
-	}
+				}
 	deleteUser=(id)=>{
 		const {users} = this.state;
 		window.http.post('/api/user/deleteadmin', {_id: id});
 		for(let i=0;i<users.length;i++){
-			if(id == users[i]._id){
+			if(id === users[i]._id){
 				users.splice(i, 1);
 				break;
 			}
@@ -59,95 +56,62 @@ class Users extends React.Component{
 	}
 
 	deleteRoles (index){
-		console.log(index+1)
 		this.state.role.splice(index, 1)
-		console.log(this.state.role)
 		this.setState({role: this.state.role}) // не коректно працює
 	}
-
-	// checked =(checked)=>{
-	// 		console.log('work')
-	// 		return <input type="checkbox" />
-	// }
 	render(){
-		let index=0;
-		const {user, users} = this.state;
-
-		const list = users.map((item,index)=>{
-		return <tbody key ={index}>
-				<tr>
-					<td data-label="User">
-						<div className="cl-table-clients">
-		 	  		 		<div  className="cl-table-clients__img">
-								<img src={item.avatarUrl} alt=""/>
-							</div>
-							<div class="cl-table-clients__info">
-								<div class="cl-table-clients__name">{item.name}</div>
-							</div>
-						</div>
-					</td>
-					<td data-label="E-mail">
-						{item.email}
-					</td>
-						{/*this is checkbox*/}
-					<td>
-					</td>
-					<td >
-					<div data-label="Actions">
-						<button class="material-icons" style = {{width:'40px', height: '30px'}} onClick={this.deleteUser.bind(null, item._id)}> <img src={Delete} alt="Button Delete"  width='25px' height='25px'/></button></div>
-					</td>
-				</tr>
-			</tbody>
-		});
-
-		let roles = this.state.role.map((elem, index) =>{
+		const {role, user, users} = this.state;
+		let roles = role.map((elem, index) =>{
 				return <AddNewRole key={index} 
 					index={index} 
 					new_roles={elem}
 					deleteRoles={this.deleteRoles.bind(this)}/>
-	
-		})
+		});
+		 let roles_head = role.map((elem, index)=>{
+		  	return <th key= {index} scope="col">{elem}</th>
+		  });
+
 		return (<div>
 					<div> 
 						<HeaderUser avatar={user.avatarUrl}/>
 					</div>
-					<div className="users">
+					<div className="users">  
 						<div className="table-wrapp">
-							<table className="table" cellpadding="0" cellspacing="0">
-								<thead>
-									<tr>
-										<th scope="col">User</th>
-										<th scope="col">Email</th>
-										<th scope="col">{this.state.role}</th>
-										<th scope="col">Actions</th>
-									</tr>
-								</thead>
-									{list}
-							</table>
-						</div>
-					</div>
-
-				{/*Не відображається*/}
-					 <form onSubmit={this.createNewRole}>
-						<div>
-			                <div>ADD NEW ROLE</div>
-			                   <div>
-				                   	<input type="text" placeholder ='Name' defaultValue={this.state.new_role} onChange={this.handleAddNewRole} />
-				                   		<button type='submit'>CREATE</button>
-			                   		{roles}
-			               		</div>
-						</div>	
-					</form>
-					<form>
-						<div>
-			                <div>ADD NEW USER</div>
-				            <div>
-				                <input type="text" placeholder="Email" defaultValue={this.state.email}  onChange={this.handleAddNewUser}/>
-				                <button type='submit' onClick={this.addNewUser}>CREATE</button>
+								<table className="table" cellPadding="0" cellSpacing="0">
+									<thead>
+										<tr>
+											<th scope="col">User</th>
+											<th scope="col">Email</th>
+										
+											{role.length !==0 ? roles_head : ''}
+											<th scope="col">Actions</th>
+										</tr>
+									</thead>
+										<UserList  users ={users} role={role} users_is={this.state.users_is}  deleteUser ={this.deleteUser.bind(this)}/>
+								</table>
 							</div>
+							 <form onSubmit={this.createNewRole} className="users-field">
+								<div className="waw-input">
+									<label>
+						                <span>Add new role</span>
+							            <input type="text" placeholder ='Name' defaultValue={this.state.new_role} onChange={this.handleAddNewRole} />
+							        </label>
+						        </div>
+						        <button type='submit' className="waw-btn _primary">CREATE</button>
+							</form>
+							{roles}
+							<form  className="users-field">
+								<div className="waw-input">
+									<label>
+						                <span>Add new user</span>
+							            <input type="text" placeholder="Email" defaultValue={this.state.email}  onChange={this.handleAddNewUser}/>
+							        </label>
+						        </div>
+						        <button  className="waw-btn _primary" type='submit' onClick={this.addNewUser}>CREATE</button>
+							</form>
+							<GenerateUser users={this.state.users}/>
 						</div>
-					</form>
-				</div>)
+					</div>)
 	}
 }
 

@@ -13,6 +13,10 @@
         width: 100%;
         table-layout: fixed;
     }
+    .lowerborder{
+        border-bottom: 1px dashed silver;
+       
+    }
 
     .cl-table-clients {
         display: flex;
