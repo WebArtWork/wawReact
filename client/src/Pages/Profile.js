@@ -1,6 +1,7 @@
 import React from 'react';
 import {Redirect} from "react-router-dom";
 import HeaderUser from "./components/header.users";
+import ArrowUp from '../assets/arrowup.png'
 import './style_pages/profile.scss'
 
 
@@ -40,10 +41,7 @@ class Profile extends React.Component{
 			this.setState({reload: true})
 		});
 	}
-
-	
 	render(){
-
 		const { user, redirect_to_out } = this.state;	
 		if(redirect_to_out){
 			return <Redirect to='/'/>
@@ -78,7 +76,7 @@ class Profile extends React.Component{
 								<div className="profile-right__img">
 									<img width="50" height="50" src={user.avatarUrl} alt="User Avatar"/>
 									<label className="profile-right__img__upload">
-										<div><i class="material-icons"></i></div>
+										<img src ={ArrowUp} className="material-icons"/>
 										<input type="file" name="file" onChange={this.changeAvatar} accept="image/*" style={{display: 'none'}}/>
 									</label>
 								</div>

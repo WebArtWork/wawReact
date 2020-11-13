@@ -18,7 +18,8 @@ class Login extends React.Component{
 		event.preventDefault();
 		window.http.post('/api/user/status', this.state, (resp)=>{
 			if(resp.email && resp.pass){
-				window.http.post('/api/user/login', this.state, (resp)=>{
+				let user = {email: this.state.email, password: this.state.password}
+				window.http.post('/api/user/login', user, (resp)=>{
 					if(!resp.data) resp.data={};	
 					window.localStorage.setItem("waw_user", JSON.stringify(resp));
 					 this.setState({ redirect: true });
@@ -38,7 +39,7 @@ class Login extends React.Component{
 		});
 	}
 	render() {
-		const {email, password,redirect, redirectsingup} = this.state;
+		let {email, password,redirect, redirectsingup} = this.state;
 		if(redirect){
 			return <Redirect to='profile'/>
 		}else if(redirectsingup){

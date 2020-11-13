@@ -14,10 +14,11 @@ class SingUp extends React.Component{
 
 	submitHandle =(event)=>{
 		event.preventDefault();
-		window.http.post('/api/user/status',this.state, (resp)=>{
+		window.http.post('/api/user/status',{email: this.state.email}, (resp)=>{
 			if(!resp.email){
-				window.http.post('/api/user/signup',this.state,  (resp)=>{
-					this.setState({redirect: true, email: this.state.email });
+				let user = {email: this.state.email, password: this.state.password}
+				window.http.post('/api/user/signup', user,  (resp)=>{
+					this.setState({redirect: true});
 				});
 			}
 			else {
@@ -26,7 +27,6 @@ class SingUp extends React.Component{
 		});
 	}
 	render(){
-
 		const {email, password, redirect} = this.state;
 		if(redirect){
 			return <Redirect to='profile'/>

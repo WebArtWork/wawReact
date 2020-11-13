@@ -17,11 +17,8 @@ export default class ForgotPass extends  Component{
 		event.preventDefault();
 		window.http.post('/api/user/status', this.state, (resp)=>{
 			if(resp.email){
-			//	console.log(resp)
-				// window.http.post('/api/user/request', this.state, (resp)=>{
-				//	console.log(this.state)
-					this.setState({confirmpass: true })
-			// })
+				this.setState({confirmpass: true})
+				window.http.post('/api/user/request', {email: this.props.email})
 			 }
 			else {
 				alert("Your email is wrong")				
@@ -40,7 +37,7 @@ export default class ForgotPass extends  Component{
 				changeHandler = {this.changeHandler.bind(this)}/>
 		}
 		else{
-			return <RecoverPass email ={this.state.email}/>
+			return <RecoverPass email ={this.state.email}/> 
 		}
 
 

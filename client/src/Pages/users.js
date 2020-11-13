@@ -11,14 +11,14 @@ class Users extends React.Component{
 		user: localStorage.getItem("waw_user") && JSON.parse(localStorage.getItem("waw_user")) || {data:{}},
 		users: [],
 		emeil: '',
-		role: [],
-		new_role: ''
+		role: ['admin'],
+		// new_role: ''
 	}
 	componentDidMount(){
-			window.http.get('/api/user/get', (resp) =>{
+		window.http.get('/api/user/get', (resp) =>{
 			this.setState({users: resp})
 		})
-				}
+	}
 	deleteUser=(id)=>{
 		const {users} = this.state;
 		window.http.post('/api/user/deleteadmin', {_id: id});
@@ -32,8 +32,8 @@ class Users extends React.Component{
 	}
 
 	addNewUser=()=>{
-		window.http.post('/api/user/create', {email: this.state.email},(resp)=>{
 			this.state.users.push(this.state.emeil)
+		window.http.post('/api/user/create', {email: this.state.email},(resp)=>{
 			this.setState({users: this.state.users})
 		})
 	}
@@ -42,35 +42,37 @@ class Users extends React.Component{
 		 this.setState({email: event.target.value})
 
 	  }
-	handleAddNewRole=(event)=>{
-		this.setState({new_role: event.target.value})
+	// handleAddNewRole=(event)=>{
+	// 	this.setState({new_role: event.target.value})
 
-	}
-	createNewRole=(event)=>{
-		event.preventDefault();	
-		this.state.role.push(this.state.new_role)
-			// window.http.post('/api/user/update', this.state.role, (resp)=>{
-				this.setState({role: this.state.role})
-		// });
+	// }
+	// createNewRole=(event)=>{
+	// 	event.preventDefault();	
+	// 	 window.http.post('/api/user/update', {roles: this.state.role}, (resp)=>{
+	// 	 	this.state.role.push(this.state.new_role);
+	// 		this.setState({new_role: '',role: this.state.role})
+	// 		console.log(this.state.new_role)
+	// 	 });
+	// }
+
+	// deleteRoles (index){
+	// 	 window.http.post('/api/user/update',{roles: this.state.role}, (resp)=>{
+	// 		this.state.role.splice(index, 1)
+	// 		this.setState({role: this.state.role})
+	// 	 });
 	
-	}
-
-	deleteRoles (index){
-		this.state.role.splice(index, 1)
-		this.setState({role: this.state.role}) // не коректно працює
-	}
+	// }
 	render(){
 		const {role, user, users} = this.state;
-		let roles = role.map((elem, index) =>{
-				return <AddNewRole key={index} 
-					index={index} 
-					new_roles={elem}
-					deleteRoles={this.deleteRoles.bind(this)}/>
-		});
-		 let roles_head = role.map((elem, index)=>{
-		  	return <th key= {index} scope="col">{elem}</th>
-		  });
-
+		// let roles = role.map((elem, index) =>{
+		// 		return <AddNewRole key={index} 
+		// 			index={index} 
+		// 			new_roles={elem}
+		// 			deleteRoles={this.deleteRoles.bind(this)}/>
+		// });
+		//  let  roles_head = role.map((elem, index)=>{
+		//   	return <th key= {index} scope="col">{elem}</th>
+		//   });
 		return (<div>
 					<div> 
 						<HeaderUser avatar={user.avatarUrl}/>
@@ -82,24 +84,24 @@ class Users extends React.Component{
 										<tr>
 											<th scope="col">User</th>
 											<th scope="col">Email</th>
-										
-											{role.length !==0 ? roles_head : ''}
+											<th scope="col">Admin</th>
+											{/*role.length !== 0 ? roles_head : ''*/}
 											<th scope="col">Actions</th>
 										</tr>
 									</thead>
-										<UserList  users ={users} role={role} users_is={this.state.users_is}  deleteUser ={this.deleteUser.bind(this)}/>
+									<UserList  users ={users} roles={role}  deleteUser ={this.deleteUser.bind(this)}/>
 								</table>
 							</div>
-							 <form onSubmit={this.createNewRole} className="users-field">
+							{/*} <form onSubmit={this.createNewRole} className="users-field">
 								<div className="waw-input">
 									<label>
 						                <span>Add new role</span>
-							            <input type="text" placeholder ='Name' defaultValue={this.state.new_role} onChange={this.handleAddNewRole} />
+							            <input type="text" placeholder ='Name' value={this.state.new_role}  onChange={this.handleAddNewRole} />
 							        </label>
 						        </div>
 						        <button type='submit' className="waw-btn _primary">CREATE</button>
 							</form>
-							{roles}
+							{roles}*/}
 							<form  className="users-field">
 								<div className="waw-input">
 									<label>
