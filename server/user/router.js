@@ -52,9 +52,7 @@ module.exports = function(waw) {
 	var router = waw.router('/api/user');
 	waw.crud('user', {
 		get: {
-			ensure: waw.next,
 			query: function(){
-				console.log('called');
 				return {};
 			},
 			select: function(){

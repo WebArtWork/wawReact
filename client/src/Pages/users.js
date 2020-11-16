@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderUser from './components/header.users';
-import AddNewRole from './components/add_new_role';
+//import AddNewRole from './components/add_new_role';
 import UserList from './components/user_list';
 import GenerateUser from './components/generate_user';
 import './style_pages/users.scss'
@@ -11,29 +11,30 @@ class Users extends React.Component{
 		user: localStorage.getItem("waw_user") && JSON.parse(localStorage.getItem("waw_user")) || {data:{}},
 		users: [],
 		emeil: '',
-		role: ['admin'],
+		role: ['admin']
 		// new_role: ''
 	}
 	componentDidMount(){
+		//console.log(window.user_service.show_users)
 		window.http.get('/api/user/get', (resp) =>{
 			this.setState({users: resp})
 		})
 	}
-	deleteUser=(id)=>{
-		const {users} = this.state;
-		window.http.post('/api/user/deleteadmin', {_id: id});
+	 deleteUser =(id) =>{
+		let {users} = this.state;
+		 window.http.post('/api/user/deleteadmin', {_id: id});
 		for(let i=0;i<users.length;i++){
 			if(id === users[i]._id){
 				users.splice(i, 1);
 				break;
 			}
 		}
-		this.setState({ users: users });
+		this.setState({users: users})
 	}
 
 	addNewUser=()=>{
-			this.state.users.push(this.state.emeil)
 		window.http.post('/api/user/create', {email: this.state.email},(resp)=>{
+			this.state.users.push(this.state.emeil)
 			this.setState({users: this.state.users})
 		})
 	}

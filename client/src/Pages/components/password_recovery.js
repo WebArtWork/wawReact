@@ -5,9 +5,7 @@ import {Link, Redirect} from "react-router-dom";
 export default class RecoveryPass extends Component{
 
 	state={
-	//	password: '',
-		redirect: false,
-	//	code: ''
+		redirect: false
 	}
 
 	changePass=(event)=>{
@@ -19,15 +17,15 @@ export default class RecoveryPass extends Component{
 
 	addChangePass=(event)=>{
 		event.preventDefault();
-		let change_pass = {email: this.props.email, password: this.state.password, code: this.state.code};
-		
+		let code = parseInt(this.state.code) 
+		let change_pass = {email: this.props.email, password: this.state.password, code: code};
 		window.http.post('/api/user/change', change_pass, (resp)=>{
-			console.log(resp)
-			//if(resp){
+			if(resp){
 				this.setState({password: this.state.password});
-		//	}
+			}
 		});
 			window.http.post('/api/user/login', change_pass, (resp)=>{
+				console.log(resp)
 				this.setState({ redirect: true });
 			});
 	}
