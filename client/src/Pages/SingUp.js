@@ -18,7 +18,11 @@ class SingUp extends React.Component{
 			if(!resp.email){
 				let user = {email: this.state.email, password: this.state.password}
 				window.http.post('/api/user/signup', user,  (resp)=>{
-					this.setState({redirect: true});
+				//	this.setState({redirect: true});
+				});
+				window.http.post('/api/user/login', user, (resp)=>{
+					//if(!resp.data) resp.data={};	
+					 this.setState({ redirect: true });
 				});
 			}
 			else {
