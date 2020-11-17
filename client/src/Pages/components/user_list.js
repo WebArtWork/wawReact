@@ -4,19 +4,27 @@ import Delete from '../../assets/deleteButton.png';
 import userService from '../../services/user.service';
 
 export default class UserList extends React.Component{
-
+	constructor(props){
+		super(props);
+		window.render.add('user list', ()=>{
+			this.setState({reload: !this.state.reload});
+		});
+	}
 	state={
-		checked: false
+		us: window.us,
+		checked: false,
+		reload: false
 	}
 
-	
-	// changeRole=(user)=>{
-	// 		user.is.admin = !user.is.admin
-	// 	window.http.post('/api/user/updateadmin', user)
-	// 	//window.user_service.role(user)
-	//  }
+	deleteUser =(id) =>{
+		this.state.us.delete(id);			
+		}
+	changeRole=(user)=>{
+			user.is.admin = !user.is.admin
+		window.http.post('/api/user/updateadmin', user)
+	 }
 	render(){
-		return this.props.users.map((user, index)=>{
+		return window.us.users.map((user, index)=>{
 			return <tbody key ={index}>
 				<tr className='lowerborder'>
 					<td data-label="User">
@@ -33,11 +41,11 @@ export default class UserList extends React.Component{
 						{user.email}
 					</td>
 					<td>
-						<input type="checkbox" defaultChecked = {user.is.admin} onChange = {userService.changeRole.bind(null, user)} />
+						<input type="checkbox" defaultChecked = {user.is.admin} onChange = {this.changeRole.bind(null, user)} />
 					</td>
 					<td >
 					<div data-label="Actions">
-						<img src={Delete} style = {{width:'30px', height: '25px'}} onClick={this.props.deleteUser.bind(null, user._id)} alt="Button Delete"/>
+						<img src={Delete} style = {{width:'30px', height: '25px'}} onClick={this.deleteUser.bind(null, user._id)} alt="Button Delete"/>
 					</div>
 					</td>
 				</tr>

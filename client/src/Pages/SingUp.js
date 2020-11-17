@@ -3,10 +3,17 @@ import {Link, Redirect} from 'react-router-dom';
 import './style_pages/singup.scss'
 
 class SingUp extends React.Component{
+	constructor(props){
+		super(props)
+		// window.render.add('sing up', ()=>{
+		// 	this.setState({reload: !this.state.reload});
+		// });
+	}
 	state ={
 		email: '',
 		password: '',
-		redirect: false
+		redirect: false,
+		reload: false
 	}
 	changeHandler =(event)=>{
 		this.setState({[event.target.name]: event.target.value})
@@ -14,21 +21,20 @@ class SingUp extends React.Component{
 
 	submitHandle =(event)=>{
 		event.preventDefault();
+
+			let user = {email: this.state.email, password: this.state.password}
 		window.http.post('/api/user/status',{email: this.state.email}, (resp)=>{
-			if(!resp.email){
-				let user = {email: this.state.email, password: this.state.password}
-				window.http.post('/api/user/signup', user,  (resp)=>{
-				//	this.setState({redirect: true});
-				});
-				window.http.post('/api/user/login', user, (resp)=>{
-					//if(!resp.data) resp.data={};	
-					 this.setState({ redirect: true });
+			if(!resp.email){		
+				window.http.post('/api/user/signup', user, (resp)=>{
+						this.setState({ redirect: true });
+						window.location.reload() // тимчасово
 				});
 			}
 			else {
 				alert("This email already exists")
 			}
 		});
+
 	}
 	render(){
 		const {email, password, redirect} = this.state;

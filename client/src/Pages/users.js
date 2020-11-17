@@ -7,36 +7,19 @@ import './style_pages/users.scss'
 
 
 class Users extends React.Component{
+		constructor(props){
+		super(props);
+	}
 	state ={
-		user: localStorage.getItem("waw_user") && JSON.parse(localStorage.getItem("waw_user")) || {data:{}},
-		users: [],
+		us: window.us,
 		emeil: '',
 		role: ['admin']
 		// new_role: ''
 	}
-	componentDidMount(){
-		//console.log(window.user_service.show_users)
-		window.http.get('/api/user/get', (resp) =>{
-			this.setState({users: resp})
-		})
-	}
-	 deleteUser =(id) =>{
-		let {users} = this.state;
-		 window.http.post('/api/user/deleteadmin', {_id: id});
-		for(let i=0;i<users.length;i++){
-			if(id === users[i]._id){
-				users.splice(i, 1);
-				break;
-			}
-		}
-		this.setState({users: users})
-	}
+
 
 	addNewUser=()=>{
-		window.http.post('/api/user/create', {email: this.state.email},(resp)=>{
-			this.state.users.push(this.state.emeil)
-			this.setState({users: this.state.users})
-		})
+		this.state.us.create(this.state.email)
 	}
 
 	handleAddNewUser=(event)=>{
@@ -64,7 +47,7 @@ class Users extends React.Component{
 	
 	// }
 	render(){
-		const {role, user, users} = this.state;
+		const {role, us, users} = this.state;
 		// let roles = role.map((elem, index) =>{
 		// 		return <AddNewRole key={index} 
 		// 			index={index} 
@@ -76,7 +59,7 @@ class Users extends React.Component{
 		//   });
 		return (<div>
 					<div> 
-						<HeaderUser avatar={user.avatarUrl}/>
+						<HeaderUser />
 					</div>
 					<div className="users">  
 						<div className="table-wrapp">
@@ -90,7 +73,7 @@ class Users extends React.Component{
 											<th scope="col">Actions</th>
 										</tr>
 									</thead>
-									<UserList  users ={users} roles={role}  deleteUser ={this.deleteUser.bind(this)}/>
+									<UserList />
 								</table>
 							</div>
 							{/*} <form onSubmit={this.createNewRole} className="users-field">

@@ -18,9 +18,6 @@ export default class ForgotPass extends  Component{
 		window.http.post('/api/user/status', this.state, (resp)=>{
 			if(resp.email){
 				window.http.post('/api/user/request', {email: this.state.email})
-				// 	, (resp)=>{
-				// 	console.log('work')
-				// });
 				this.setState({confirmpass: true})
 
 			 }

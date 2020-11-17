@@ -5,6 +5,8 @@ import {Link, Redirect} from "react-router-dom";
 export default class RecoveryPass extends Component{
 
 	state={
+		us: window.us,
+		password: '',
 		redirect: false
 	}
 
@@ -18,21 +20,25 @@ export default class RecoveryPass extends Component{
 	addChangePass=(event)=>{
 		event.preventDefault();
 		let code = parseInt(this.state.code) 
-		let change_pass = {email: this.props.email, password: this.state.password, code: code};
+		let change_pass = {email: this.props.email, password: this.state.password, pin: code};
 		window.http.post('/api/user/change', change_pass, (resp)=>{
 			if(resp){
-				this.setState({password: this.state.password});
+				alert(resp)
+			 	this.setState({password: this.state.password});
+			}
+			else{
+				alert(resp)
 			}
 		});
-			window.http.post('/api/user/login', change_pass, (resp)=>{
-				console.log(resp)
-				this.setState({ redirect: true });
-			});
+		window.http.post('/api/user/login', change_pass, (resp)=>{
+			window.localStorage.setItem("waw_user", JSON.stringify(resp));
+			this.setState({ redirect: true });
+		});
 	}
+
 	render(){
-		let {redirect} = this.state;
-			if(redirect){
-			return <Redirect to='profile'/>
+			if(this.state.redirect){
+			return <Redirect to='/profile'/>
 		}
 		return(
 			<div className="auth-wrapper">
@@ -46,7 +52,7 @@ export default class RecoveryPass extends Component{
 						</div>
 						<div className="waw-input mb15">
 							<span>Password:</span>
-							<input type="password" placeholder="New password" name="password" onChange={this.changePass}/>
+							<input type="password" placeholder="New password" value={this.state.password} name="password" onChange={this.changePass}/>
 						</div>
 						<div className="auth-form__btn"><button className="waw-btn _primary" type="submit">Save</button></div>
 					</form>

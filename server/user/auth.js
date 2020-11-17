@@ -109,6 +109,7 @@ module.exports = function(waw) {
 				var message;
 				var now = new Date().getTime();
 				if (user.resetCounter > 0 && (now - user.resetCreate) <= 600000) {
+					console.log(user, req.body, user.resetPin == req.body.pin);
 					if (user.resetPin == req.body.pin) {
 						user.password = user.generateHash(req.body.password);
 						message = 'Password successfully changed.';

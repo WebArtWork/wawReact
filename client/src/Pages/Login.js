@@ -3,11 +3,18 @@ import {Link, Redirect } from "react-router-dom";
 import './style_pages/login.scss'
 
 class Login extends React.Component{
+		constructor(props){
+			super(props)
+			window.render.add('login', ()=>{
+				this.setState({reload: !this.state.reload});
+			});
+		}
 	state={
 		email: '',  //'ceo@webart.work
 		password: '', //asdasdasdasd
 		redirect: false,
-		redirectsingup: false
+		redirectsingup: false,
+		reload: false
 	}
 
 
@@ -16,13 +23,15 @@ class Login extends React.Component{
 	}
 	submitHandle = (event)=>{
 		event.preventDefault();
-		window.http.post('/api/user/status', this.state, (resp)=>{
-			if(resp.email && resp.pass){
-				let user = {email: this.state.email, password: this.state.password}
+		let user = {email: this.state.email, password: this.state.password}
+		window.http.post('/api/user/status', user, (resp)=>{
+			if(resp.email && resp.pass){	
 				window.http.post('/api/user/login', user, (resp)=>{
 					if(!resp.data) resp.data={};	
 					window.localStorage.setItem("waw_user", JSON.stringify(resp));
 					 this.setState({ redirect: true });
+					  window.location.reload();  //тимчасово
+					
 				});
 			}else if(!resp.email){
 					let acept = window.confirm("There is no such email"+'\n'+
