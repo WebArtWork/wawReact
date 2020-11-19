@@ -35,15 +35,16 @@ class Profile extends React.Component{
 			a.readAsDataURL(fl);
 		}
 	changeAvatar =(e)=> {
-			this.todataUrl(e.target.files[0], (dataUrl)=>{
+		this.todataUrl(e.target.files[0], (dataUrl)=>{
 			this.state.us.avatarUrl = dataUrl;
 			window.http.post('/api/user/avatar', {
-				dataUrl: dataUrl})
-			 this.setState({reload: true})
+				dataUrl: dataUrl
+			});
+			this.setState({reload: true});
 		});
 	}
 	render(){
-		const { user, redirect_to_out, us } = this.state;	
+		const { redirect_to_out, us } = this.state;	
 		if(redirect_to_out){
 			return <Redirect to='/'/>
 		}

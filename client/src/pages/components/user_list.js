@@ -1,8 +1,5 @@
 import React from 'react';
 import Delete from '../../assets/deleteButton.png';
-
-import userService from '../../services/user.service';
-
 export default class UserList extends React.Component{
 	constructor(props){
 		super(props);

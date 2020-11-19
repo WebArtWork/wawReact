@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
-import Company from "../../assets/logo.png"
-import '../style_pages/header_users.scss'
+import '../style_pages/header_users.scss';
 
 export default function HeaderUser(props){
 	const us = window.us;

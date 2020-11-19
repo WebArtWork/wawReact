@@ -34,8 +34,7 @@ class Login extends React.Component{
 					
 				});
 			}else if(!resp.email){
-					let acept = window.confirm("There is no such email"+'\n'+
-						"You want to create an account?")
+					let acept = window.confirm("There is no such email\nYou want to create an account?");
 					if(acept){
 						this.setState({ redirectsingup: true});
 					}else{
