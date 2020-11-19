@@ -1,8 +1,8 @@
 import React from 'react';
 import {Redirect} from "react-router-dom";
-import HeaderUser from "./components/header.users";
-import ArrowUp from '../assets/arrowup.png'
-import './style_pages/profile.scss'
+import HeaderUser from "../../common/header/header";
+import ArrowUp from "../../../assets/arrowup.png"
+import './profile.scss'
 
 
 class Profile extends React.Component{

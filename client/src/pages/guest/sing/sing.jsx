@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, Redirect} from 'react-router-dom';
-import './style_pages/singup.scss'
+import './sing.scss'
 
 class SingUp extends React.Component{
 	constructor(props){

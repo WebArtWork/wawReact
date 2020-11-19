@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import '../style_pages/header_users.scss';
+import './header.scss';
 
 export default function HeaderUser(props){
 	const us = window.us;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, Redirect } from "react-router-dom";
-import './style_pages/login.scss'
+import './login.scss'
 
 class Login extends React.Component{
 		constructor(props){

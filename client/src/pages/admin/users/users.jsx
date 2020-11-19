@@ -1,9 +1,8 @@
 import React from 'react';
-import HeaderUser from './components/header.users';
-//import AddNewRole from './components/add_new_role';
-import UserList from './components/user_list';
-import GenerateUser from './components/generate_user';
-import './style_pages/users.scss'
+import HeaderUser from "../../common/header/header";
+import UserList from './components/users_list';
+import GenerateUser from './components/generate_users';
+import "./user.scss"
 
 
 class Users extends React.Component{
@@ -14,7 +13,6 @@ class Users extends React.Component{
 		us: window.us,
 		emeil: '',
 		role: ['admin']
-		// new_role: ''
 	}
 
 

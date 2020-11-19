@@ -6,11 +6,11 @@ import render from './services/render.service';
 //import userService from './services/user.service'
 import './app.scss'
 
-import Login from './pages/login';
-import SingUp from './pages/sign';
-import Profile from './pages/profile';
- import Users from './pages/users';
-import ForgotPass from './pages/reset';
+import Login from './pages/guest/login/login';
+import SingUp from './pages/guest/sing/sing';
+import Profile from './pages/user/profile/profile';
+ import Users from './pages/admin/users/users';
+import ForgotPass from './pages/guest/reset/reset';
 
 
 
