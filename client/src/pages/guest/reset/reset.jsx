@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import RecoverPass from './components/password_recovery';
+import RecoverPass from './components/password_recovery_action';
 import ForgotPassword from './components/forgot_pass';
 
 

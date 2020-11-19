@@ -1,5 +1,3 @@
-
-
 export default function http(){
 	window.http = {
 		post: (url, doc, callback=(resp:any) => {}, opts:any={})=>{

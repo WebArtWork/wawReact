@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link, Redirect} from "react-router-dom";
+import Pass_Recover from "./pass_recovery";
 
 
 export default class RecoveryPass extends Component{
@@ -37,31 +38,15 @@ export default class RecoveryPass extends Component{
 	}
 
 	render(){
-			if(this.state.redirect){
+		if(this.state.redirect){
 			return <Redirect to='/profile'/>
 		}
-		return(
-			<div className="auth-wrapper">
-
-				<div className="auth">
-					<div className="auth-title">Set New Password</div>
-					<form className="auth-form" onSubmit={this.addChangePass}>
-						<div className="waw-input mb15">
-							<span>Email:</span>
-							<input type="text" placeholder="Code" name="code" onChange={this.code} />
-						</div>
-						<div className="waw-input mb15">
-							<span>Password:</span>
-							<input type="password" placeholder="New password" value={this.state.password} name="password" onChange={this.changePass}/>
-						</div>
-						<div className="auth-form__btn"><button className="waw-btn _primary" type="submit">Save</button></div>
-					</form>
-					<div className="auth-link">
-						<Link to='/'>Login</Link>
-						<Link to='/singup'>Sing up</Link>
-					</div>
-				</div>
-			</div>)
+		return <Pass_Recover 
+			addChangePass = {this.addChangePass} 
+			changePass={this.changePass}
+			code ={this.code}
+			state={this.state}/>
+		
 	}
 } 
 
