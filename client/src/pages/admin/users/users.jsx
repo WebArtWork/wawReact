@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderUser from "../../common/header/header";
+import HeaderUser from "../../../common/header/header";
 import UserList from './components/users_list';
 import GenerateUser from './components/generate_users';
 import "./user.scss"

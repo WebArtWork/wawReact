@@ -1,6 +1,6 @@
 import React from 'react';
 import {Redirect} from "react-router-dom";
-import HeaderUser from "../../common/header/header";
+import HeaderUser from "../../../common/header/header";
 import ArrowUp from "../../../assets/arrowup.png"
 import './profile.scss'
 
