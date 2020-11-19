@@ -7,7 +7,7 @@ import render from './services/render.service';
 import './app.scss'
 
 import Login from './pages/login';
-import SingUp from './pages/singup';
+import SingUp from './pages/sign';
 import Profile from './pages/profile';
  import Users from './pages/users';
 import ForgotPass from './pages/reset';
