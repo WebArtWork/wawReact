@@ -14,14 +14,12 @@ class Users extends React.Component{
 		emeil: '',
 		role: ['admin']
 	}
-
-
 	addNewUser=()=>{
 		this.state.us.create(this.state.email)
 	}
 	handleAddNewUser=(event)=>{
 		 this.setState({email: event.target.value})
-	  }
+	 }
 	render(){
 		const {role, us, users} = this.state;
 		return (<div>
