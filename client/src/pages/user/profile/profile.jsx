@@ -2,6 +2,7 @@ import React from 'react';
 import {Redirect} from "react-router-dom";
 import HeaderUser from "../../../common/header/header";
 import ArrowUp from "../../../assets/arrowup.png"
+import DefaultAvatar from "../../../assets/user.png"
 import './profile.scss'
 
 
@@ -76,7 +77,7 @@ class Profile extends React.Component{
 							</div>
 							<div className="profile-right">
 								<div className="profile-right__img">
-									<img width="50" height="50" src={us.avatarUrl} alt="User Avatar"/>
+									<img width="50" height="50" src={us.avatarUrl || DefaultAvatar  } alt="User Avatar"/>
 									<label className="profile-right__img__upload">
 										<img src ={ArrowUp} className="material-icons"/>
 										<input type="file" name="file" onChange={this.changeAvatar} accept="image/*" style={{display: 'none'}}/>

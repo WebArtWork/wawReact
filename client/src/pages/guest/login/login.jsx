@@ -3,12 +3,12 @@ import {Link, Redirect } from "react-router-dom";
 import './login.scss'
 
 class Login extends React.Component{
-		constructor(props){
-			super(props)
-			window.render.add('login', ()=>{
-				this.setState({reload: !this.state.reload});
-			});
-		}
+	constructor(props){
+		super(props)
+		window.render.add('login', ()=>{
+			this.setState({reload: !this.state.reload});
+		});
+	}
 	state={
 		email: '',  //'ceo@webart.work
 		password: '', //asdasdasdasd
@@ -27,13 +27,13 @@ class Login extends React.Component{
 		window.http.post('/api/user/status', user, (resp)=>{
 			if(resp.email && resp.pass){	
 				window.http.post('/api/user/login', user, (resp)=>{
-					if(!resp.data) resp.data={};	
-					window.localStorage.setItem("waw_user", JSON.stringify(resp));
-					 this.setState({ redirect: true });
-					  window.location.reload();  //тимчасово
-					
+					if(!resp.data) {resp.data={}};	
+					window.localStorage.setItem("waw_user", JSON.stringify(resp))
+					this.setState({ redirect: true});
+					 window.location.reload() // тимчасово
 				});
-			}else if(!resp.email){
+			}
+				else if(!resp.email){
 					let acept = window.confirm("There is no such email\nYou want to create an account?");
 					if(acept){
 						this.setState({ redirectsingup: true});
@@ -41,25 +41,25 @@ class Login extends React.Component{
 						this.setState({ redirectsingup: false });
 					}
 					
-			}else {
-				alert("Your password is wrong")
+				}else {
+					alert("Your password is wrong")
+				}
+			});
 			}
-		});
-	}
-	render() {
-		let {email, password,redirect, redirectsingup} = this.state;
-		if(redirect){
-			return <Redirect to='profile'/>
-		}else if(redirectsingup){
-			return <Redirect to='singup'/>
-		}
-		return(
-			<div className="auth-wrapper">
-				<div className="auth">
+			render() {
+				let {email, password,redirect, redirectsingup} = this.state;
+				if(redirect){
+					return <Redirect to='profile'/>
+				}else if(redirectsingup){
+					return <Redirect to='singup'/>
+				}
+				return(
+					<div className="auth-wrapper">
+					<div className="auth">
 					<div className="auth-title">Log In</div>
 					<form className="auth-form"  onSubmit = {this.submitHandle} >
 					<div className="waw-input mb15">
-						<span>EMAIL:</span>
+					<span>EMAIL:</span>
 					<input type="text" name="email" placeholder="email" value={email} onChange={this.changeHandler} />
 					</div>
 					<div className="waw-input mb15">
@@ -67,16 +67,16 @@ class Login extends React.Component{
 					<input type="password" name="password" placeholder="password" value={password} onChange={this.changeHandler}/>
 					</div>
 					<div className="auth-form__btn">
-						<button className="waw-btn _primary" type="submit">Login</button> 
+					<button className="waw-btn _primary" type="submit">Login</button> 
 					</div>
-				</form>
-				<div className="auth-link">
+					</form>
+					<div className="auth-link">
 					<Link to='reset'>Forgot password?</Link>
 					<Link to='singup'>Don't have an account?</Link>
-				</div>
-				</div>
-			</div>)
-	}
-}
+					</div>
+					</div>
+					</div>)
+			}
+		}
 
-export default Login
+		export default Login

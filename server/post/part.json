@@ -1,0 +1,14 @@
+{
+	"name": "Post",
+	"router": "index.js",
+	"crud": {
+		"update": {
+			"keys": ["name", "description"]
+		},
+		"unique": {
+			"key": "url"
+		},
+		"delete": [""]
+	},
+	"dependencies": {}
+}

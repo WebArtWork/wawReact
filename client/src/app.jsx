@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import http from './services/http.service';
+//import http from './services/http.service';
 import user from './services/user.service';
+import  {HttpService as http} from 'wrcom';
+import  {CoreService as core} from 'wrcom';
 import render from './services/render.service';
-//import userService from './services/user.service'
 import './app.scss'
+import 'wrcom/dist/index.css'
 
 import Login from './pages/guest/login/login';
 import SingUp from './pages/guest/sing/sing';
@@ -16,17 +18,18 @@ import ForgotPass from './pages/guest/reset/reset';
 
 
 
-export default class App extends Component {
+class App extends Component {
 	constructor(props){
 		super(props);
-		render();
-		http();
-		user();
+		 render();
+		 http();
+		 core();
+		 user();	
 	}
 
 	render() { 
-		
-		return(<Router>
+		return(
+			<Router>
 				<Switch>
 					<Route exact path="/" component ={Login}/>
 					<Route  path="/singup" component ={SingUp}/>
@@ -34,5 +37,8 @@ export default class App extends Component {
 					<Route  path="/profile" component ={Profile}/>
 					<Route  path="/reset" component ={ForgotPass}/>
 				</Switch>
-		</Router>)}
+		</Router>
+	)}
  }
+
+export default App;
